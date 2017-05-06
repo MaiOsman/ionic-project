@@ -1,9 +1,9 @@
-angular.module('osApp').config(function($stateProvider) {
+angular.module('chat app').config(function($stateProvider) {
   $stateProvider
   
-  state('home',{
+  .state('home',{
     url:'/',
-    templateUrl:"templates/home2.html",
+    templateUrl:"templates/home.html",
    
   })
 
@@ -22,7 +22,7 @@ angular.module('osApp').config(function($stateProvider) {
   })
 
 
-    .state('base',
+    .state('base',{
     templateUrl:"templates/base.html",
     abstract:true,
     controller: "base"

@@ -1,0 +1,55 @@
+<ion-view view-title="Signup">
+	<ion-content class="homepage">
+		<div class="overlay">
+			<div class="contents">
+				<div class="list">
+					<form ng-submit="submitted = true; signup(signupForm.$valid)" name="signupForm" novalidate >
+					  <label class="item item-input item-floating-label">
+					    <span class="input-label">User Name</span>
+					    <input type="text" name="username"  required placeholder="User Name" ng-model="user.username">
+					    <p class="error" ng-if="register.username.$error.required && submitted" >please enter your user name</p>
+					  </label>
+
+					   <label class="item item-input item-floating-label">
+					    <span class="input-label">first name</span>
+					    <input type="text" name="firstname"  required placeholder="first name" ng-model="user.firstname">
+					    <p class="error" ng-if="register.firstname.$error.required && submitted" >please enter your first name</p>
+
+					  </label> 
+
+					   <label class="item item-input item-floating-label">
+					    <span class="input-label">last name</span>
+					    <input type="text"  name="lastname"  required placeholder="last name" ng-model="user.lastname">
+					    <p class="error" ng-if="register.lastname.$error.required && submitted" >please enter your last name</p>
+					  </label>
+
+					  <label class="item item-input item-floating-label">
+					    <span class="input-label">Email</span>
+					    <input type="text"  name="email"  required placeholder="Email"  ng-model="user.email">
+					    <p class="error" ng-if="register.email.$error.required && submitted" >please enter your email</p>
+						<p class="error" ng-if="register.email.$error.email && submitted "> please enter valid email</p>
+					  </label>
+
+
+					  <label class="item item-input item-floating-label">
+					    <span class="input-label">Password</span>
+					    <input type="password" name="password"  required placeholder="Password" ng-model="user.password">
+					    <p class="error" ng-if="register.password.$error.required && submitted" >please enter your password</p>
+					  </label>
+
+					  <label class="item item-input item-floating-label">
+					    <span class="input-label">re-Password</span>
+					    <input type="text"  name="repassword"  required placeholder="re-Password" ng-model="user.repassword">
+					    <p class="error" ng-if="register.repassword.$error.required && submitted" >please enter your repassword</p>
+						<p class="error" ng-if="user.password != user.repassword && user.password && submitted" >password doesn't match </p>
+					  </label>
+
+					  <button class="button button-calm">Register</button>
+					</form>
+				  
+				</div>
+			</div>
+		</div>
+
+  	</ion-content>
+</ion-view>
