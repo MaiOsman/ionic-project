@@ -1,4 +1,4 @@
-<ion-view view-title="CONTACT">
+<ion-view view-title="login">
 	<ion-content class="homepage">
 		<div class="overlay">
 			
@@ -8,7 +8,7 @@
 
 					  <label class="item item-input item-floating-label">
 					    <span class="input-label">User Name</span>
-					    <input type="text" name="username" placeholder="User Name" required ng-model="user.username">
+					    <input type="text" name="username" placeholder="User Name" required ng-model="login.username">
 
 					   <p class="error" ng-if="login.username.$error.required && submitted" >please enter your user name</p>
 
@@ -16,7 +16,7 @@
 
 					  <label class="item item-input item-floating-label">
 					    <span class="input-label">Password</span>
-					    <input type="text" name="password" placeholder="Password" required ng-model="user.password">
+					    <input type="text" name="password" placeholder="Password" required ng-model="login.password">
 					    <p class="error" ng-if="login.password.$error.required && submitted" >please enter your password</p>
 
 					  </label>

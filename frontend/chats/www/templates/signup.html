@@ -1,9 +1,9 @@
-<ion-view view-title="CONTACT">
+<ion-view view-title="Signup">
 	<ion-content class="homepage">
 		<div class="overlay">
 			<div class="contents">
 				<div class="list">
-					<form ng-submit="signup(signup.$valid)" name="signup" novalidate >
+					<form ng-submit="submitted = true; signup(signupForm.$valid)" name="signupForm" novalidate >
 					  <label class="item item-input item-floating-label">
 					    <span class="input-label">User Name</span>
 					    <input type="text" name="username"  required placeholder="User Name" ng-model="user.username">
@@ -44,7 +44,7 @@
 						<p class="error" ng-if="user.password != user.repassword && user.password && submitted" >password doesn't match </p>
 					  </label>
 
-					  <button class="button button-calm"  ui-sref="base.active">Register</button>
+					  <button class="button button-calm">Register</button>
 					</form>
 				  
 				</div>
