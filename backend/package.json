@@ -1,12 +1,11 @@
 {
-  "name": "cha6t-backend",
+  "name": "chat-backend",
   "version": "1.0.0",
-  "description": "",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js",
-    "serve": "nodemon server2.js"
+    "serve": "nodemon api.js",
   },
   "author": "",
   "license": "ISC",
@@ -19,5 +18,6 @@
     "express": "^4.15.2",
     "mongodb": "^2.2.26",
     "socket.io": "^1.7.3"
-  }
+  },
+  "description": ""
 }
