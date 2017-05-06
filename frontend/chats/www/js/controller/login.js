@@ -4,7 +4,7 @@ $scope.login={}
 if(valid){
 $scope.login = function(){
     localStorage.setItem("username", $scope.login.username);
-    $state.go('base.active');
+    $state.go('app.active');
 }
 }
 

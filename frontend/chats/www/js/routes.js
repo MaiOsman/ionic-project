@@ -22,14 +22,14 @@ angular.module('chat app').config(function($stateProvider) {
   })
 
 
-    .state('base',{
-    templateUrl:"templates/base.html",
+    .state('app',{
+    templateUrl:"templates/app.html",
     abstract:true,
-    controller: "base"
+    // controller: "app"
     })
 
 
-    .state('base.about',{
+    .state('app.about',{
     url:'/about',
     views:{
       "pageContent":{
@@ -38,7 +38,7 @@ angular.module('chat app').config(function($stateProvider) {
     }
   })
 
-     .state('base.chat',{
+     .state('app.chat',{
     url:'/chat',
     views:{
       "pageContent":{
@@ -48,7 +48,7 @@ angular.module('chat app').config(function($stateProvider) {
   })
 
 
-      .state('base.active',{
+      .state('app.active',{
     url:'/active',
     views:{
       "pageContent":{
