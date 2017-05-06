@@ -1,4 +1,4 @@
-angular.module('chats').config(function($stateProvider) {
+angular.module('chat app').config(function($stateProvider) {
   $stateProvider
   
   .state('home',{
