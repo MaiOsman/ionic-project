@@ -10,7 +10,7 @@ angular.module('chat app').factory('User',function($http,$q){
             data : username
         }).then(function(res){
             if(res.data.length){
-                 def.resolve(res.data)
+                 def.resolve(res.status)
             }else{
                  def.reject('there is no data')
             }
@@ -30,7 +30,7 @@ angular.module('chat app').factory('User',function($http,$q){
             data : username
         }).then(function(res){
             if(res.data.length){
-                 def.resolve(res.data)
+                 def.resolve(res.status)
             }else{
               def.reject('there is no data')
             }
@@ -50,7 +50,7 @@ angular.module('chat app').factory('User',function($http,$q){
               data : username
           }).then(function(res){
               if(res.data.length){
-                   def.resolve(res.data)
+                   def.resolve(res.status)
               }else{
                 def.reject('there is no data')
               }
