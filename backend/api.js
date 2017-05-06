@@ -14,11 +14,19 @@ var database;
 app.use('/node_modules',express.static(__dirname+'/node_modules'));
 app.use('/public',express.static(__dirname+'/public'));
 app.use(bodyParser.json())
+////headers
+// app.all('*',function(req,res,next){
+// res.header('Access-Control-Allow-Origin', '*');
+// res.header('Access-Control-Allow-Methods', 'GET,POST');
+// res.header('Access-Control-Allow-Headers', 'Content-Type');
+// next();
+// })
 
 //routing
 app.get('/',function(request,response){
   response.sendFile(__dirname+'/index.html');
 })
+
 /////////////////signup ///////////////////////////
 app.post('/api/signup',function(request,response){
   if(request.body.username && request.body.password && request.body.email,request.body.firstname,request.body.lastname){
@@ -37,7 +45,7 @@ app.post('/api/signup',function(request,response){
 ////////////checkName if it is in db or not ///////////
 app.post('/api/checkname',function (request,response) {
   database.collection('users').find({"username" : request.body.username}).toArray(function(err,users) {
-    if(!err){
+    if(!err && users.length){
       // console.log(users);
         response.send({status:1})
     }else{
@@ -84,8 +92,8 @@ MongoClient.connect(url,function(err,db){
   if(!err){
     console.log("connect correctly to database");
 //listing
-    server.listen(3000,function(){
-      console.log("server is working!");
+server.listen(3000,function(){
+  console.log("server is working!");
     })
 
   }else{
