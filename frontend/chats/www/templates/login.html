@@ -4,20 +4,20 @@
 			
 			<div class="contents">
 				<div class="list">
-					<form ng-submit="login(login.$valid)" name="login" novalidate >
+					<form ng-submit="login(login.$valid)" name="loginForm" novalidate >
 
 					  <label class="item item-input item-floating-label">
 					    <span class="input-label">User Name</span>
 					    <input type="text" name="username" placeholder="User Name" required ng-model="login.username">
 
-					   <p class="error" ng-if="login.username.$error.required && submitted" >please enter your user name</p>
+					   <p class="error" ng-if="loginForm.username.$error.required && submitted" >please enter your user name</p>
 
 					  </label>
 
 					  <label class="item item-input item-floating-label">
 					    <span class="input-label">Password</span>
 					    <input type="text" name="password" placeholder="Password" required ng-model="login.password">
-					    <p class="error" ng-if="login.password.$error.required && submitted" >please enter your password</p>
+					    <p class="error" ng-if="loginForm.password.$error.required && submitted" >please enter your password</p>
 
 					  </label>
 
