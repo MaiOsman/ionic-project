@@ -6,9 +6,8 @@ $scope.signup = function(valid){
  valid=valid?valid&&($scope.user.password==$scope.user.repassword):false
 if(valid){
      // request from server
-    
     User.checkName($scope.user.username).then(function(data){
-          if(data == 1){
+          if(data == 0){
               User.signup($scope.user).then(function(data){
                   if (data == 1) {
                     localStorage.setItem("username", $scope.user.username);
@@ -33,4 +32,3 @@ if(valid){
 }
 
 })
-

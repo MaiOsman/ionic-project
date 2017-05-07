@@ -43,11 +43,13 @@ angular.module('chat app').factory('User',function($http,$q){
 
       login : function(userName,password){
             var def = $q.defer;
-
+            var user = {}
+            user.username = username
+            user.password = password
             $http({
               url:'http://localhost:3000/api/login',
               method:'POST',
-              data : username
+              data : user
           }).then(function(res){
               if(res.data.length){
                    def.resolve(res.status)
