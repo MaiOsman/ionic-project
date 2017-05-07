@@ -1,11 +1,13 @@
 angular.module("chat app").controller('login',function($scope,User,$state){
 
 $scope.login={}
+
+$scope.login = function(valid){
 if(valid){
-$scope.login = function(){
     localStorage.setItem("username", $scope.login.username);
     $state.go('app.active');
 }
 }
+
 
 })

@@ -11,21 +11,22 @@ const bodyParser = require('body-parser');
 var database;
 // var Client;
 //middlewares
+app.all('*',function(req,res,next){
+res.header('Access-Control-Allow-Origin', '*');
+res.header('Access-Control-Allow-Methods', 'GET,POST');
+res.header('Access-Control-Allow-Headers', 'Content-Type');
+next();
+});
 app.use('/node_modules',express.static(__dirname+'/node_modules'));
 app.use('/public',express.static(__dirname+'/public'));
 app.use(bodyParser.json())
 ////headers
-// app.all('*',function(req,res,next){
-// res.header('Access-Control-Allow-Origin', '*');
-// res.header('Access-Control-Allow-Methods', 'GET,POST');
-// res.header('Access-Control-Allow-Headers', 'Content-Type');
-// next();
-// })
+
 
 //routing
-app.get('/',function(request,response){
-  response.sendFile(__dirname+'/index.html');
-})
+// app.get('/',function(request,response){
+//   response.sendFile(__dirname+'/index.html');
+// })
 
 /////////////////signup ///////////////////////////
 app.post('/api/signup',function(request,response){

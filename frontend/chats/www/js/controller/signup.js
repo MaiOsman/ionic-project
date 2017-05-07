@@ -6,13 +6,13 @@ $scope.signup = function(valid){
  valid=valid?valid&&($scope.user.password==$scope.user.repassword):false
 if(valid){
      // request from server
-    
+
     User.checkName($scope.user.username).then(function(data){
           if(data == 1){
               User.signup($scope.user).then(function(data){
                   if (data == 1) {
                     localStorage.setItem("username", $scope.user.username);
-                    // $state.go('app.active');
+                    $state.go('app.active');
                   }else {
                       alert("there is something error, please try again");
                   }
@@ -33,4 +33,3 @@ if(valid){
 }
 
 })
-

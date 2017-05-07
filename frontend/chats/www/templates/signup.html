@@ -15,7 +15,7 @@
 					    <input type="text" name="firstname"  required placeholder="first name" ng-model="user.firstname">
 					    <p class="error" ng-if="signupForm.firstname.$error.required && submitted" >please enter your first name</p>
 
-					  </label> 
+					  </label>
 
 					   <label class="item item-input item-floating-label">
 					    <span class="input-label">last name</span>
@@ -39,14 +39,16 @@
 
 					  <label class="item item-input item-floating-label">
 					    <span class="input-label">re-Password</span>
-					    <input type="text"  name="repassword"  required placeholder="re-Password" ng-model="user.repassword">
+					    <input type="password"  name="repassword"  required placeholder="re-Password" ng-model="user.repassword">
 					    <p class="error" ng-if="signupForm.repassword.$error.required && submitted" >please enter your repassword</p>
 						<p class="error" ng-if="user.password != user.repassword && user.password && submitted" >password doesn't match </p>
 					  </label>
 
-					  <button class="button button-calm">Register</button>
+					  <!-- <button class="button button-calm">Register</button> -->
+					  <button class="button button-block button-calm">Register</button>
+
 					</form>
-				  
+
 				</div>
 			</div>
 		</div>
