@@ -26,7 +26,7 @@ MongoClient.connect('mongodb://127.0.0.1:27017/chatdb', function (err, db) {
   		io.sockets.emit("update-people", people);
   	});
 
-  	client.on("chat", function(msg){
+  	client.on("chat", function(){
       var messages_collection = db.collection('messages');
       messages_collection.find().toArray(function(err, msgs) {
           console.log(msgs);
@@ -36,19 +36,19 @@ MongoClient.connect('mongodb://127.0.0.1:27017/chatdb', function (err, db) {
       });
 
   		//io.sockets.emit("chat", people[client.id], msg);
-      io.sockets.on("send",function(msg){
-        var messages_collection = db.collection('messages');
-        messages_collection.insert({message:""+msg+""}, function(err, docs) {
-            messages_collection.count(function(err, count) {
-                console.log(format("count = %s", count));
-            });
-        });
-
-      })
-      io.sockets.emit("send" ,msg);
-
-
   	});
+
+    io.sockets.on("send",function(msg){
+      var messages_collection = db.collection('messages');
+      messages_collection.insert({message:""+msg+""}, function(err, docs) {
+          messages_collection.count(function(err, count) {
+              console.log(format("count = %s", count));
+          });
+      });
+
+      io.sockets.emit("send" ,msg);
+    })
+
 
   	client.on("logout", function(){
       console.log('user disconnected',client.id);
