@@ -65,6 +65,7 @@ app.post('/api/login',function(request,response){
       if(!err && users.length){
         // users.push(user[0]);
         response.send({status:1});
+        console.log();
       }else{
         response.send({status:0});
       }
