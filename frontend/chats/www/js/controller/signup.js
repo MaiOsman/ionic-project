@@ -11,7 +11,7 @@ if(valid){
               User.signup($scope.user).then(function(data){
                   if (data == 1) {
                     localStorage.setItem("username", $scope.user.username);
-                    // $state.go('app.active');
+                    $state.go('app.active');
                   }else {
                       alert("there is something error, please try again");
                   }

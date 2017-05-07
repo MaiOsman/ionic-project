@@ -4,7 +4,9 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 
-//var socket = io("http://localhost:3000");
+var socket = io("http://localhost:3000");
+
+
 angular.module('chat app', ['ionic'])
 
 .run(function($ionicPlatform,$state) {
