@@ -15,6 +15,7 @@ if(valid){
             localStorage.setItem("username", $scope.login.username);
             // socket.emit('join', $scope.login.username);
             $state.go('app.active');
+
         }else{
             console.log("notvalid");
             // console.log("after"+data);
@@ -22,6 +23,5 @@ if(valid){
     })
   }
 }
-
 
 })

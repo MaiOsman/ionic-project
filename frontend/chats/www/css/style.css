@@ -16,6 +16,7 @@ background-position: center;
   text-align: center;
 }
 
+
 .overlay:before{
   content: "";
   display: inline-block;
@@ -23,6 +24,27 @@ background-position: center;
   vertical-align: middle;
   text-align: center;
 }
+
+/**/
+.chat{
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  /*background: rgba(0, 0, 0,0.6);*/
+  text-align: center;
+}
+
+
+.chat:before{
+  content: "";
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  text-align: center;
+}
+/**/
 
 .contents{
   vertical-align: middle;
@@ -70,6 +92,5 @@ border-bottom: 1px solid #fff;
   height: 60px;
 }
 
-.remember{
-  color: #fff;
-}
+
+

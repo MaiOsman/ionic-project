@@ -53,6 +53,7 @@ angular.module('chat app').config(function($stateProvider) {
       "pageContent":{
         templateUrl:"templates/active.html",
         controller : "active"
+
       }
     }
   })

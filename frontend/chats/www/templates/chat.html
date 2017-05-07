@@ -1,21 +1,37 @@
-<ion-view view-title="Chat">
+<ion-view view-title="Chat Room">
 	<ion-content >
-	<!-- 	<label>sender1: message</label>
-		<br>
-		<label>sender2:message</label> -->
-<ul class="list">
-    <li class="item">sender1: message</li>
-    <li class="item">sender2: message</li>
-    <li class="item">sender3: message</li>
+	<div>
+		<ul class="list">
+		    <li class="item">sender1: message</li>
+		    <li class="item">sender2: message</li>
+		    <li class="item">sender3: message</li>
+		</ul>
+	</div>
 
-    
-</ul>
 
-		<div class="overlay">
+		<div class="chat" >
 			<div class="contents">
-	 			<textarea class="textarea"></textarea>
-				<button class="button button-block button-positive">send</button>	
+				<form novalidate name="chatForm" ng-submit="send()">
+					<textarea class="textarea" ng-model="message"></textarea>
+					<button class="button button-block button-positive">send</button>
+				</form>	
 			</div>	
-		</div>		
+		</div>
 	</ion-content>
 </ion-view>
+
+
+
+<!-- <div class="container">
+  <ul>
+    <li ng-repeat="msg in messages track by $index">{{msg}}</li>
+  </ul>
+  <form novalidate name="signupForm" ng-submit="send()">
+    <div class="form-group">
+      <label>Message</label>
+      <textarea name="name" ng-model="message" class="form-control" rows="8" cols="80"></textarea>
+    </div>
+
+    <button  class="btn btn-primary">Send</button>
+  </form>
+</div> -->
