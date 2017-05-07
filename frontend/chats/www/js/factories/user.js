@@ -55,6 +55,7 @@ angular.module('chat app').factory('User',function($http,$q){
 // console.log(res.data.status);
               if(res.data.status){
                 console.log("from true",res.data.status);
+
                    def.resolve(res.data.status)
                   //  console.log("factory"+res.data.status);
               }else{

@@ -24,9 +24,9 @@ app.use(bodyParser.json())
 
 
 //routing
-// app.get('/',function(request,response){
-//   response.sendFile(__dirname+'/index.html');
-// })
+app.get('/',function(request,response){
+  response.sendFile(__dirname+'/index.html');
+})
 
 /////////////////signup ///////////////////////////
 app.post('/api/signup',function(request,response){
@@ -38,7 +38,7 @@ app.post('/api/signup',function(request,response){
           response.send({status:1})
       }else{
         // console.log(err);
-          response.send({status:0})
+          response.send({status:2})
       }
     });
   }
@@ -51,7 +51,7 @@ app.post('/api/checkname',function (request,response) {
         response.send({status:1})
     }else{
       // console.log(error);
-      response.send({status:0})
+      response.send({status:2})
     }
 
   })
@@ -67,7 +67,7 @@ app.post('/api/login',function(request,response){
         response.send({status:1});
         console.log();
       }else{
-        response.send({status:0});
+        response.send({status:2});
       }
     })
       // response.send({status:1})
