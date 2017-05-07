@@ -42,7 +42,8 @@ angular.module('chat app').config(function($stateProvider) {
     url:'/chat',
     views:{
       "pageContent":{
-        templateUrl:"templates/chat.html"
+        templateUrl:"templates/chat.html",
+        controller:"chat"
       }
     }
   })
