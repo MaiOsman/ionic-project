@@ -3,7 +3,6 @@ angular.module('chat app').factory('User',function($http,$q){
   return {
       checkName: function(username){
         var def = $q.defer;
-
           $http({
             url:'http://localhost:3000/api/checkname',
             method:'POST',
@@ -37,7 +36,6 @@ angular.module('chat app').factory('User',function($http,$q){
             }
         },function(err){
             //  def.reject(err)
-            // return err
             })
           return def.promise;
       },
