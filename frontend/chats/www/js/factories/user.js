@@ -5,7 +5,7 @@ angular.module('chat app').factory('User',function($http,$q){
         var def = $q.defer;
 
           $http({
-            url:'http://localhost:3000/api/checkname',
+            url:'http://localhost:3000/api/checkName',
             method:'POST',
             data : username
         }).then(function(res){
@@ -16,7 +16,7 @@ angular.module('chat app').factory('User',function($http,$q){
             }
         },function(err){
              def.reject(err)
-            //  return err
+             return err
             })
           return def.promise;
       },
@@ -36,7 +36,7 @@ angular.module('chat app').factory('User',function($http,$q){
             }
         },function(err){
              def.reject(err)
-            // return err
+            return err
             })
           return def.promise;
       },
@@ -58,7 +58,7 @@ angular.module('chat app').factory('User',function($http,$q){
               }
           },function(err){
                def.reject(err)
-              // return err
+              return err
               })
             return def.promise;
       }

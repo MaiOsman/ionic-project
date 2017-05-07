@@ -53,3 +53,7 @@ background: transparent;
 color: #fff;
 border-bottom: 1px solid #fff;
 }
+
+.text{
+  border: 1px solid #fff;
+}
