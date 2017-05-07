@@ -54,6 +54,22 @@ color: #fff;
 border-bottom: 1px solid #fff;
 }
 
-.text{
-  border: 1px solid #fff;
+.textarea{
+  width: 300px;
+  height: 60px;
+  border: 3px solid #0095ff;
+  padding: 5px;
+  /*font-family: Tahoma, sans-serif;*/
+  /*text-align: center;*/
+  margin-left: auto;
+    margin-right: auto;
+}
+
+.sendButton{
+  width: 300px;
+  height: 60px;
+}
+
+.remember{
+  color: #fff;
 }
