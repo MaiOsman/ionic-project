@@ -39,7 +39,7 @@
 
 					  <label class="item item-input item-floating-label">
 					    <span class="input-label">re-Password</span>
-					    <input type="text"  name="repassword"  required placeholder="re-Password" ng-model="user.repassword">
+					    <input type="password"  name="repassword"  required placeholder="re-Password" ng-model="user.repassword">
 					    <p class="error" ng-if="signupForm.repassword.$error.required && submitted" >please enter your repassword</p>
 						<p class="error" ng-if="user.password != user.repassword && user.password && submitted" >password doesn't match </p>
 					  </label>

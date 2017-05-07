@@ -1,36 +1,53 @@
 <ion-view view-title="Active Users">
 	<ion-content >
-		<div class="list">
+<!-- 		<div class="list" >
 
-			    <a class="item item-avatar" href="#">
+			    <a class="item item-avatar">
 			   
-			      <h2 class="ion-checkmark-circled" style="color: green">Venkman</h2>
+			      <h2><spam class="ion-checkmark-circled" style="color:#0c60ee "></spam> Venkman</h2>
 			      
 			    </a>
 
-			     <a class="item item-avatar" href="#"> 
+			     <a class="item item-avatar" > 
 			      
-			      <h2><spam class="ion-checkmark-circled" style="color: green"></spam>Venkman</h2>
-			      
-			    </a>
-
-			     <a class="item item-avatar" href="#">
-			      
-			      <h2>Venkman</h2>
+			      <h2><spam class="ion-checkmark-circled" style="color:#0c60ee"></spam> Venkman</h2>
 			      
 			    </a>
 
-			     <a class="item item-avatar" href="#">
+			     <a class="item item-avatar" >
 			      
-			      <h2>Venkman</h2>
+			      <h2><spam class="ion-checkmark-circled" style="color: #0c60ee"></spam> Venkman</h2>
 			      
 			    </a>
 
-			     <a class="item item-avatar" href="#">
+			     <a class="item item-avatar">
 			      
-			      <h2>Venkman</h2>
+			      <h2><spam class="ion-checkmark-circled" style="color: #0c60ee"></spam> Venkman</h2>
 			      
 			    </a>
+
+			     <a class="item item-avatar" >
+			      
+			      <h2><spam class="ion-checkmark-circled" style="color: #0c60ee"></spam> Venkman</h2>
+			      
+			    </a>
+		</div> -->
+
+
+
+<div ng-repeat="p in people">
+		 <div class="list" ng-repeat="(key, value) in person" >
+
+			<i class="item"><spam class="ion-checkmark-circled" style="color:#0c60ee" ></spam> value </i>
+			<!--   <i class="item"><spam class="ion-checkmark-circled" style="color:#0c60ee"></spam> Venkman</i>
+			  <i class="item"><spam class="ion-checkmark-circled" style="color:#0c60ee"></spam> Venkman</i>
+			  <i class="item"><spam class="ion-checkmark-circled" style="color:#0c60ee"></spam>Venkman</i> -->
+			  <!-- <button class="button icon-left button-block button-positive ion-chatboxes " >Start chat</button> -->
+
+			  <button class="button icon-left button-positive ion-chatboxes" style="margin-left:30% ;margin-right:30%">start chat</button>
+
+
+	</div>
 		</div>
 				    
 	</ion-content>
