@@ -25,7 +25,7 @@ angular.module('chat app').config(function($stateProvider) {
     .state('app',{
     templateUrl:"templates/app.html",
     abstract:true,
-    // controller: "app"
+    controller: "logout"
     })
 
 

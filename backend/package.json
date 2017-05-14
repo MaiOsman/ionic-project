@@ -5,7 +5,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js",
-    "serve": "nodemon api.js"
+    "serve": "nodemon api.js",
+    "serve2": "nodemon server2.js"
   },
   "author": "",
   "license": "ISC",

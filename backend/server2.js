@@ -8,6 +8,8 @@ const MongoClient = require('mongodb').MongoClient
 
 //End of Connection With MongoDB
 
+var messages=[];
+
 app.get('/', function (req, res) {
   res.sendFile(__dirname + '/index.html');
 })
@@ -28,68 +30,14 @@ MongoClient.connect('mongodb://127.0.0.1:27017/chatdb', function (err, db) {
 
   	client.on("chat", function(){
       console.log("chat event fired");
+      io.sockets.emit('all_messages',messages)
 
-          //
-          // db.collection('messages').find().toArray(function(err, msgs) {
-          //    if (err) return console.log('error initiating find on users, err = ', err);
-          //    else
-          //        {
-          //            for(i = 0; i < msgs.count; i++)
-          //                 {
-          //                     console.log(msgs[i]);
-          //                 }
-          //
-          //            console.log("CLOSED");
-          //        }
-          //    });
-
-      var messages_collection = db.collection('messages');
-      // msgsFromDB = messages_collection.find({"anas" : "saba7 l fol"});
-      // console.log("msgs from server.js",msgsFromDB.cmd.query);
-      // var alll = messages_collection.find();
-      // console.log("all el all" + alll);
-      // messages_collection.find().toArray(function(err, msg) {
-      //   if(!err){
-      //   console.log("mai ==>");
-      //
-      //     console.log( msg );
-      //     console.log(err);
-      //     // assert.equal(null, err);
-      //     // assert.equal(3, msgs.length);
-      //   }else{
-      //     console.log("err");
-      //   }
-      //     // console.log("msgs from server.js",msgs);
-      //     // io.sockets.emit('all_messages',msgs)
-      //     // closing the db
-      //     // db.close();
-      // });
-      messages_collection.find({}).toArray(function(err, msgs) {
-        console.log("msgs",msgs);
-        if(!err){
-          console.log("no err");
-          // assert.equal(null, err);
-          // assert.equal(3, msgs.length);
-        }else{
-          console.log("err");
-        }
-          // console.log("msgs from server.js",msgs);
-          // io.sockets.emit('all_messages',msgs)
-          // closing the db
-          // db.close();
-      });
-
-  		// io.sockets.emit("chat", people[client.id], msg);
   	});
 
-    io.sockets.on("send",function(userMsg){
-      var messages_collection = db.collection('messages');
-      messages_collection.insert({"username":""+userMsg.message+""}, function(err, docs) {
-          // messages_collection.count(function(err, count) {
-          //     //console.log(format("count = %s", count));
-          // });
-      });
-
+    client.on("send",function(userMsg){
+      console.log('send event fired');
+      console.log(userMsg);
+      messages.push(userMsg)
       io.sockets.emit("send" ,userMsg);
     })
 

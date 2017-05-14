@@ -11,11 +11,11 @@
 
 		<div class="chat" >
 			<div class="contents">
-				<form novalidate name="chatForm" ng-submit="send()">
-					<textarea class="textarea" ng-model="message"></textarea>
+				<form name="chatForm" ng-submit="submitted = true; send(chatForm.$valid)" novalidate>
+					<textarea class="textarea" name="7aga_tanya" ng-model="message" required></textarea>
 					<button class="button button-block button-positive">send</button>
-				</form>	
-			</div>	
+				</form>
+			</div>
 		</div>
 	</ion-content>
 </ion-view>

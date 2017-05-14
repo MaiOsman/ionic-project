@@ -2,17 +2,21 @@ angular.module('chat app').factory('User',function($http,$q){
 
   return {
       checkName: function(username){
+        console.log("from factory",username);
+        var user = {}
+        user.username = username
         var def = $q.defer();
           $http({
             url:'http://localhost:3000/api/checkname',
             method:'POST',
-            data : username
+            data : user
         }).then(function(res){
-            if(res.data.status == 1){
-                 def.resolve(res. data.status)
+          console.log("from facory",res.data.status);
+            if(res.data.status){
+                 def.resolve(res.data.status)
                  console.log(res.data.status);
             }else{
-                 def.reject('there is no data')
+              def.resolve(res.data.status)
             }
         },function(err){
             //  def.reject(err)
@@ -22,10 +26,11 @@ angular.module('chat app').factory('User',function($http,$q){
       },
 
       signup: function(user){
+        console.log("from signup factory",user);
         var def = $q.defer();
 
           $http({
-            url:'http://localhost:3000/api/singup',
+            url:'http://localhost:3000/api/signup',
             method:'POST',
             data : user
         }).then(function(res){
@@ -59,7 +64,6 @@ angular.module('chat app').factory('User',function($http,$q){
                    def.resolve(res.data.status)
                   //  console.log("factory"+res.data.status);
               }else{
-                console.log("from zft",res.data.status);
                 def.reject('there is no data')
               }
           },function(err){

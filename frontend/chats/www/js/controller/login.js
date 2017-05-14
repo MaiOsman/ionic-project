@@ -11,9 +11,9 @@ if(valid){
     User.login($scope.login.username,$scope.login.password).then(function(data){
       // console.log("first"+data);
         if(data == 1){
-          // console.log("before"+data);
-            localStorage.setItem("username", $scope.login.username);
-            // socket.emit('join', $scope.login.username);
+          // console.log("before",$scope.login.username);
+            window.localStorage.setItem("username", $scope.login.username);
+            socket.emit('join', $scope.login.username);
             $state.go('app.active');
 
         }else{
