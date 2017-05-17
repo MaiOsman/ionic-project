@@ -1,19 +1,22 @@
 <ion-view view-title="Chat Room">
-	<ion-content >
-	<div>
-		<ul class="list">
-		    <li class="item">sender1: message</li>
-		    <li class="item">sender2: message</li>
-		    <li class="item">sender3: message</li>
-		</ul>
-	</div>
-
-
+	<ion-content scroll="false" class="padding" >
 		<div class="chat" >
 			<div class="contents">
+				<ion-scroll direction="y"  style="width:100% ;height: 90%">
+					<div>
+						<ul class="list" ng-repeat = "user in userMessages">
+						    <li class="item">{{user.username}}: {{user.message}}</li>
+
+						</ul>
+					</div>
+				</ion-scroll>
+
 				<form name="chatForm" ng-submit="submitted = true; send(chatForm.$valid)" novalidate>
-					<textarea class="textarea" name="7aga_tanya" ng-model="message" required></textarea>
-					<button class="button button-block button-positive">send</button>
+					<ion-scroll style="width:100% ;height: 25%">
+					<textarea class="textarea" rows="3" style="width:83%; border:solid 2px blue; display: inline-block"name="7aga_tanya" ng-model="msg.public" required></textarea>
+					<button style="height:38%; width:11%;" class="button button-block button-positive">send</button>
+				</ion-scroll>
+
 				</form>
 			</div>
 		</div>

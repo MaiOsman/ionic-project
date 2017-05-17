@@ -16,7 +16,7 @@ app.get('/', function (req, res) {
 
 //Socket Connection
 var people = {};
-MongoClient.connect('mongodb://127.0.0.1:27017/chatdb', function (err, db) {
+// MongoClient.connect('mongodb://127.0.0.1:27017/chatdb', function (err, db) {
   io.on('connection',function(client){
     console.log("connected", client.id);
     // people[client.id] = client.id;
@@ -51,8 +51,8 @@ MongoClient.connect('mongodb://127.0.0.1:27017/chatdb', function (err, db) {
   //  console.log(people);
   })
 
-  db.close();
-})
+  // db.close();
+// })
 //End of Socket Connection
 
 
@@ -78,9 +78,9 @@ app.use(bodyParser.json())
 
 
 //routing
-// app.get('/',function(request,response){
-//   response.sendFile(__dirname+'/index.html');
-// })
+app.get('/',function(request,response){
+  response.sendFile(__dirname+'/index.html');
+})
 
 /////////////////signup ///////////////////////////
 app.post('/api/signup',function(request,response){
@@ -148,10 +148,7 @@ MongoClient.connect(url,function(err,db){
   database=db;
   if(!err){
     console.log("connect correctly to database");
-//listing
-server.listen(3000,function(){
-  console.log("server is working!");
-    })
+
 
   }else{
     console.log("error");

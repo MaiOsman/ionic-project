@@ -1,4 +1,3 @@
-
 const express = require('express');
 const app = express();
 const server = require('http').createServer(app);
@@ -7,8 +6,7 @@ const bodyParser = require('body-parser');
 const mongo = require('mongodb');
 const MongoClient = mongo.MongoClient
     , format = require('util').format;
-    var db;
-    var messages=[];
+    var database="k";
 
 //End of Connection With MongoDB
 
@@ -18,8 +16,12 @@ app.get('/', function (req, res) {
 
 //Socket Connection
 var people = {};
-// MongoClient.connect('mongodb://127.0.0.1:27017/chatdb', function (err, db) {
+MongoClient.connect('mongodb://127.0.0.1:27017/chatdb', function (err, db) {
+  database = db;
+  db.collection('messages').find().toArray(function(err,res){
+    console.log(res);
 
+  })
 
   console.log("connect correctly to database");
   io.on('connection',function(client){
@@ -33,40 +35,91 @@ var people = {};
   		io.sockets.emit("join", people);
   	});
 
-
   	client.on("chat", function(){
       console.log("chat event fired");
 
-      db.collection('messages').find().toArray(function(err,res){
-     console.log(res);
-     io.sockets.emit('all_messages',res);
-      })
+          //
+          // db.collection('messages').find().toArray(function(err, msgs) {
+          //    if (err) return console.log('error initiating find on users, err = ', err);
+          //    else
+          //        {
+          //            for(i = 0; i < msgs.count; i++)
+          //                 {
+          //                     console.log(msgs[i]);
+          //                 }
+          //
+          //            console.log("CLOSED");
+          //        }
+          //    });
 
+       var messages_collection = database.collection('messagges');
+       messages_collection.find().toArray(function(err,res){
+      console.log(res);
+       })
 
-});
+      // msgsFromDB = messages_collection.find({"anas" : "saba7 l fol"});
+      // console.log("msgs from server.js",msgsFromDB.cmd.query);
+      // var alll = messages_collection.find();
+      // console.log("all el all" + alll);
+      // messages_collection.find().toArray(function(err, msg) {
+      //   if(!err){
+      //   console.log("mai ==>");
+      //
+      //     console.log( msg );
+      //     console.log(err);
+      //     // assert.equal(null, err);
+      //     // assert.equal(3, msgs.length);
+      //   }else{
+      //     console.log("err");
+      //   }
+      //     // console.log("msgs from server.js",msgs);
+      //     // io.sockets.emit('all_messages',msgs)
+      //     // closing the db
+      //     // db.close();
+      // });
+      messages_collection.find({}).toArray(function(err, msgs) {
+        console.log("msgs",msgs);
+        if(!err){
+          console.log("no err");
+          // assert.equal(null, err);
+          // assert.equal(3, msgs.length);
+        }else{
+          console.log("err");
+        }
+          // console.log("msgs from server.js",msgs);
+          // io.sockets.emit('all_messages',msgs)
+          // closing the db
+          // db.close();
+      });
 
-    client.on("send",function(userMsg){
-      console.log("uder: ", userMsg.username , "mm :" , userMsg.message);
-      console.log(userMsg,"check");
+  		// io.sockets.emit("chat", people[client.id], msg);
+  	});
+
+    io.sockets.on("send",function(userMsg){
       var messages_collection = db.collection('messages');
-      messages_collection.insert(userMsg, function(err, docs) {
+      messages_collection.insert({"username":""+userMsg.message+""}, function(err, docs) {
+          // messages_collection.count(function(err, count) {
+          //     //console.log(format("count = %s", count));
+          // });
+          // if (err) { console.warn(err.message); }
+          // else { console.log("chat message inserted into db: " + msg); }
       });
 
       io.sockets.emit("send" ,userMsg);
-    });
+    })
 
 
   	client.on("logout", function(){
-      // console.log('user disconnected',client.id);
-  		// io.sockets.emit("update", people[client.id] + " has left the server.");
+      console.log('user disconnected',client.id);
+  		io.sockets.emit("update", people[client.id] + " has left the server.");
   		delete people[client.id];
   		io.sockets.emit("update-people", people);
   	});
   //  console.log(people);
   })
 
-  // db.close();
-// })
+  db.close();
+})
 //End of Socket Connection
 
 
@@ -98,7 +151,7 @@ app.post('/api/signup',function(request,response){
   if(request.body.username && request.body.password && request.body.email,request.body.firstname,request.body.lastname){
 //create chatdb in mongodb && check if there are fulfill or not
 // console.log(request.body);
-    db.collection('users').save(request.body,function(err,result) {
+    database.collection('users').save(request.body,function(err,result) {
       if(!err){
           response.send({status:1})
       }else{
@@ -110,7 +163,7 @@ app.post('/api/signup',function(request,response){
 })
 ////////////checkName if it is in db or not ///////////
 app.post('/api/checkname',function (request,response) {
-  db.collection('users').find({"username" : request.body.username}).toArray(function(err,users) {
+  database.collection('users').find({"username" : request.body.username}).toArray(function(err,users) {
     if(!err && users.length){
       console.log(users);
         response.send({status:1})
@@ -125,7 +178,7 @@ app.post('/api/checkname',function (request,response) {
 app.post('/api/login',function(request,response){
   console.log(request.body);
   if(request.body.username && request.body.password){
-    db.collection('users').find({"username":request.body.username,"password":request.body.password}).toArray(function(err,users) {
+    database.collection('users').find({"username":request.body.username,"password":request.body.password}).toArray(function(err,users) {
       // console.log(users);
       if(!err && users.length){
         // users.push(user[0]);
@@ -153,27 +206,27 @@ app.get('*',function(request,response){
 //   })
 // })
 //connecting to mongodb
-var url='mongodb://127.0.0.1:27017/chatdb';
-MongoClient.connect(url,function(err,database){
-  db = database;
-  if(!err){
-    console.log("connect correctly to database");
-//listing
-server.listen(3000,function(){
-  console.log("server is working!");
-    })
-
-  }else{
-    console.log("error");
-  }
-// db.close();
-})
+// var url='mongodb://127.0.0.1:27017/chatdb';
+// MongoClient.connect(url,function(err,db){
+//   database=db;
+//   if(!err){
+//     console.log("connect correctly to database");
+// //listing
+// server.listen(3000,function(){
+//   console.log("server is working!");
+//     })
+//
+//   }else{
+//     console.log("error");
+//   }
+// // db.close();
+// })
 
 
 //End of Code Sara
 
-//
-// //listing
-// server.listen(3000,function(){
-//   console.log("server is working!");
-// })
+
+//listing
+server.listen(3000,function(){
+  console.log("server is working!");
+})

@@ -1,30 +1,32 @@
 angular.module('chat app').controller('chat',function($scope,$timeout){
+$scope.msg={};
   socket.emit("chat");
-    console.log($scope.message);
   // var $scope.userMessages
   socket.on('all_messages',function(msgs){
-    console.log(msgs);
+    // console.log(msgs);
     $timeout(function(){
-      console.log(msgs);
+      console.log(msgs,"from db");
         $scope.userMessages = msgs;
     })
   })
 
-  $scope.send = function(){
-    console.log("hello from send function " , $scope.message);
-    console.log($scope.message);
+  $scope.send = function($valid){
+
+    console.log($valid);
+    console.log("hello from send function " , $scope.msg.public);
     var userMsg = {}
     userMsg.username = localStorage.getItem("username");
-    userMsg.message = $scope.message;
-    console.log(userMsg);
+    userMsg.message = $scope.msg.public;
+    // console.log(userMsg);
     socket.emit("send",userMsg);
 
-    // $scope.message = '';
+    $scope.msg.public = '';
   }
 
   socket.on('send',function(userMsg){
     $timeout(function(){
-      console.log(userMsg);
+      $scope.userMessages.push(userMsg);
+      console.log(userMsg,"from textarea");
     })
   })
 })
