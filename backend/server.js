@@ -18,8 +18,6 @@ app.get('/', function (req, res) {
 
 //Socket Connection
 var people = {};
-// MongoClient.connect('mongodb://127.0.0.1:27017/chatdb', function (err, db) {
-
 
   console.log("connect correctly to database");
   io.on('connection',function(client){
@@ -57,20 +55,14 @@ var people = {};
 
 
   	client.on("logout", function(){
-      // console.log('user disconnected',client.id);
-  		// io.sockets.emit("update", people[client.id] + " has left the server.");
+
   		delete people[client.id];
-  		io.sockets.emit("update-people", people);
+      io.sockets.emit("join", people);
   	});
   //  console.log(people);
   })
 
-  // db.close();
-// })
-//End of Socket Connection
-
-
-///////////////////////////Code Sara
+//=============== API ====================
 // var messages=[];
 // var users=[];
 var database;
@@ -85,13 +77,6 @@ next();
 app.use('/node_modules',express.static(__dirname+'/node_modules'));
 app.use('/public',express.static(__dirname+'/public'));
 app.use(bodyParser.json())
-////headers
-
-
-//routing
-// app.get('/',function(request,response){
-//   response.sendFile(__dirname+'/index.html');
-// })
 
 /////////////////signup ///////////////////////////
 app.post('/api/signup',function(request,response){
@@ -141,18 +126,7 @@ app.post('/api/login',function(request,response){
 app.get('*',function(request,response){
   response.send(404);
 })
-// //socket
-// io.on('connection',function(client){
-//   console.log("connected", client.id);
-//   client.emit('message',messages)
-//   client.on('message',function(msg){
-//     console.log(msg);
-//     messages.push(msg)
-//     client.broadcast.emit("message",messages)
-//     client.emit("message",messages)
-//   })
-// })
-//connecting to mongodb
+
 var url='mongodb://127.0.0.1:27017/chatdb';
 MongoClient.connect(url,function(err,database){
   db = database;
@@ -168,12 +142,3 @@ server.listen(3000,function(){
   }
 // db.close();
 })
-
-
-//End of Code Sara
-
-//
-// //listing
-// server.listen(3000,function(){
-//   console.log("server is working!");
-// })
