@@ -1,0 +1,12 @@
+<ion-view view-title="Active Users">
+	<ion-content >
+
+		 <div class="list" ng-repeat="(key, value) in people track by $index" >
+
+			<i class="item"><spam class="ion-checkmark-circled" style="color:#0c60ee" ></spam> {{value}} </i>
+
+		</div>
+		<button class="button icon-left button-positive ion-chatboxes" ui-sref="app.chat" style="margin-left:30% ;margin-right:30%">start chat</button>
+
+	</ion-content>
+</ion-view>
